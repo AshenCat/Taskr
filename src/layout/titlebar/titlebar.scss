@@ -1,0 +1,32 @@
+.title-bar {
+    width: 100%;
+    -webkit-app-region: drag;
+    user-select: none;
+    display: flex;
+    color: var(--dark-bg-text-color);
+    background-color: var(--dark-bg-color);
+    .app-name {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 100;
+        flex: 1;
+        margin-left: 8px;
+    }
+    .window-button {
+        -webkit-app-region: none;
+        width: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .2s;
+        // background-color: white;
+        &:hover {
+            background-color: var(--dark-bg-lighter-color);
+        }
+        &:last-child {
+            &:hover {
+                background-color: lightcoral;
+            }
+        }
+    }
+}
