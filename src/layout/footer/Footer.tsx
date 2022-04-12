@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './footer.scss';
 
 function Footer() {
   return (
-    <footer>Footer</footer>
+    <footer className="footer">Footer</footer>
   )
 }
 

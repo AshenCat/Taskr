@@ -1,12 +1,77 @@
 :root {
     --main-bg-color: #EDE9E8;
     --main-text-color: #0b0a04;
-    --dark-bg-color: #333;
-    --dark-bg-lighter-color: #6e6e6e;
+
+    --dark-shade-1: #020202;
+    --dark-shade-2: #0c0c0c;
+    --dark-shade-3: #161616;
+    --dark-shade-4: #1f1f1f;
+    --dark-shade-5: #292929;
+    --dark-shade-6: #333;
+    --dark-shade-7: #3d3d3d;
+    --dark-shade-8: #474747;
+    --dark-shade-9: #505050;
+    --dark-shade-10: #5a5a5a;
+    --dark-shade-11: #646464;
+    --dark-shade-12: #6e6e6e;
+    --dark-shade-13: #787878;
+
+    --dark-tint-1: #818181;
+    --dark-tint-2: #8b8b8b;
+    --dark-tint-3: #959595;
+    --dark-tint-4: #9f9f9f;
+    --dark-tint-5: #a9a9a9;
+    --dark-tint-6: #b3b3b3;
+    --dark-tint-7: #bcbcbc;
+    --dark-tint-8: #c6c6c6;
+    --dark-tint-9: #d0d0d0;
+    --dark-tint-10: #dadada;
+    --dark-tint-11: #e4e4e4;
+    --dark-tint-12: #ededed;
+    --dark-tint-13: #f7f7f7;
+
     --dark-bg-text-color: #F1EDED;
 
-    --color-1: #007acc;
-    --color-2: #593695;
+    --palette1-1: #00adcc;
+    --palette1-2: #009ccc;
+    --palette1-3: #008bcc;
+    --palette1-4: #007acc;
+    --palette1-5: #0069cc;
+    --palette1-6: #0058cc;
+    --palette1-7: #0047cc;
+
+    --palette2-1: #413695;
+    --palette2-2: #493695;
+    --palette2-3: #513695;
+    --palette2-4: #593695;
+    --palette2-5: #613695;
+    --palette2-6: #693695;
+    --palette2-7: #713695;
+
+    --danger-light: #ff4444;
+    --danger-dark: #cc0000;
+    --danger-text: #d0d0d0;
+    
+    --warning-light: #ffbb33;
+    --warning-dark: #ff8800;
+    --warning-text: #d0d0d0;
+    
+    --success-light: #00c851;
+    --success-dark: #007e33;
+    --success-text: #d0d0d0;
+    
+    --info-light: #33b5e5;
+    --info-dark: #0099cc;
+    --info-text: #d0d0d0;
+}
+
+.input-group {
+    display: flex;
+}
+
+.form-group {
+    display: flex;
+    flex-flow: column;
 }
 
 body { 
@@ -31,3 +96,7 @@ body {
 * {
     font-family: 'Monaco', 'Menlo', 'Consolas', 'Droid Sans Mono', 'Inconsolata', 'Courier New', Courier, monospace,
 }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }

@@ -1,0 +1,37 @@
+.create-todo {
+    min-height: 35%;
+    max-height: 55%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--dark-tint-9);
+    border-radius: 10% 10% 0 0;
+    padding: 18px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    form {
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        .form-group {
+            .input-group {
+                .create-todo-add-tag {
+                    border-radius: 2px 2px 0 0;
+                }
+            }
+        }
+        .form-group:not(:first-child) {
+            margin-top: 3px;
+        }
+        .tag-list {
+            min-height: 10px;
+            flex: 1;
+        }
+        .create-todo-submit {
+            background-color: var(--palette2-4);
+            &:hover {
+                background-color: var(--palette2-1);
+            }
+        }
+    }
+}
