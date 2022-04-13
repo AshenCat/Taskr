@@ -5,7 +5,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--dark-tint-9);
+    background-color: var(--light-tint-9);
     border-radius: 10% 10% 0 0;
     padding: 18px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -15,8 +15,21 @@
         flex-flow: column;
         .form-group {
             .input-group {
+                .create-todo-variant-name {
+                    border-top: 1px solid var(--light-tint-3);
+                    border-bottom: 1px solid var(--light-tint-3);
+                    border-left: 1px solid var(--light-tint-3);
+                    border-right: none;
+                }
+                .create-todo-variant-dropdown {
+                    
+                }
                 .create-todo-add-tag {
-                    border-radius: 2px 2px 0 0;
+                    border-top-right-radius: 2px;
+                    border-top-left-radius: 0;
+                    border-bottom-right-radius: 2px;
+                    border-bottom-left-radius: 0;
+                    padding: 6px 12px;
                 }
             }
         }

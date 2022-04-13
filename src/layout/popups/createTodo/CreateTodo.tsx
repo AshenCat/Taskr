@@ -1,21 +1,14 @@
 import React, { FormEvent, useEffect, useState } from 'react'
-import Button from '../../_components/button/Button';
-import Chip from '../../_components/chip/Chip';
-import Input from '../../_components/input/Input';
-import './todo.scss'
+import Button from '../../../_components/Button';
+import Chip from '../../../_components/Chip';
+import Input from '../../../_components/Input';
+import './createTodo.scss'
 
 interface ITags {
   id?: string,
   name: string,
   variant: string
 }
-
-const arr = [
-  {id: '1', name: 'Warning', variant: 'warning'},
-  {id: '2', name: 'Error', variant: 'Error'},
-  {id: '3', name: 'Info', variant: 'info'},
-  {id: '4', name: 'Success', variant: 'success'}
-]
 
 function CreateTodo() {
   const [task, setTask] = useState<string>('');
@@ -53,9 +46,9 @@ function CreateTodo() {
         <div className="form-group">
           <label htmlFor='tags'>Tags: </label>
           <div className='input-group'>
-            <Input show={true} name="tags" type="text"  value={tagName} onChange={e=>setTagName(e.target.value)} />
+            <Input show={true} name="tags" type="text" className='create-todo-variant-name' value={tagName} onChange={e=>setTagName(e.target.value)} />
             <select 
-              className='create-todo-dropdown'
+              className='create-todo-variant-dropdown'
               value={tagVariant}
               onChange={e=>{setTagVariant(e.target.value)}}>
                 <option value={'info'}>info</option>

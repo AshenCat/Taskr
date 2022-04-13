@@ -16,19 +16,19 @@
     --dark-shade-12: #6e6e6e;
     --dark-shade-13: #787878;
 
-    --dark-tint-1: #818181;
-    --dark-tint-2: #8b8b8b;
-    --dark-tint-3: #959595;
-    --dark-tint-4: #9f9f9f;
-    --dark-tint-5: #a9a9a9;
-    --dark-tint-6: #b3b3b3;
-    --dark-tint-7: #bcbcbc;
-    --dark-tint-8: #c6c6c6;
-    --dark-tint-9: #d0d0d0;
-    --dark-tint-10: #dadada;
-    --dark-tint-11: #e4e4e4;
-    --dark-tint-12: #ededed;
-    --dark-tint-13: #f7f7f7;
+    --light-tint-1: #818181;
+    --light-tint-2: #8b8b8b;
+    --light-tint-3: #959595;
+    --light-tint-4: #9f9f9f;
+    --light-tint-5: #a9a9a9;
+    --light-tint-6: #b3b3b3;
+    --light-tint-7: #bcbcbc;
+    --light-tint-8: #c6c6c6;
+    --light-tint-9: #d0d0d0;
+    --light-tint-10: #dadada;
+    --light-tint-11: #e4e4e4;
+    --light-tint-12: #ededed;
+    --light-tint-13: #f7f7f7;
 
     --dark-bg-text-color: #F1EDED;
 
@@ -94,9 +94,13 @@ body {
 }
 
 * {
-    font-family: 'Monaco', 'Menlo', 'Consolas', 'Droid Sans Mono', 'Inconsolata', 'Courier New', Courier, monospace,
+    font-family: 'Monaco', 'Menlo', 'Consolas', 'Droid Sans Mono', 'Inconsolata', 'Courier New', Courier, monospace;
 }
 
 *, *::before, *::after {
     box-sizing: border-box;
-  }
+}
+
+.row {
+    display: flex;
+}
