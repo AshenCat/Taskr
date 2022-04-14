@@ -1,0 +1,31 @@
+.custom-collapse {
+    transition: .3s;
+    .collapse-header {
+        display: flex;
+        cursor: pointer;
+        * {
+            transition: .3s;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            user-select: none;
+            color: var(--dark-shade-11);
+        }
+        .collapse-chevron {
+            font-size: 24px;
+        }
+        .collapse-title {
+            font-size: 20px;
+            margin-left: 8px;
+        }
+        .collapse-title.active {
+            margin-left: 12px;
+        }
+    }
+    .collapse-children {
+        padding: 0 16px;
+        .children-item {
+            margin: 5px 0;
+        }
+    }
+}
