@@ -3,7 +3,7 @@ import { VscClose } from 'react-icons/vsc';
 import './chip.scss'
 
 interface IChipProps {
-    variant: string,
+    variant?: string,
     name: string,
     closeAction?: ()=>void
 }
@@ -11,7 +11,7 @@ interface IChipProps {
 function Chip(props: IChipProps) {
     const {variant, name, closeAction} = props;
     return (
-      <div className={`chip ${variant} ${!!closeAction && 'with-button'}`}>
+      <div className={`chip ${variant ?? ''} ${!!closeAction && 'with-button'}`}>
         <span>{name}</span>
         {closeAction && <div 
           className='chip-action-button' 

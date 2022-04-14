@@ -33,9 +33,9 @@
     background-color: var(--warning-dark);
 }
 
-.error {
-    color: var(--error-text);
-    background-color: var(--error-dark);
+.error, .danger {
+    color: var(--danger-text);
+    background-color: var(--danger-dark);
 }
 
 .info {

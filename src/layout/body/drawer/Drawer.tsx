@@ -42,7 +42,7 @@ function drawer() {
             scale: 1.1,
           }}
           whileTap={{
-            rotate: 135,
+            rotate: 0,
             scale: 1.2,
           }}
           onClick={()=>setDrawerOpen(true)}

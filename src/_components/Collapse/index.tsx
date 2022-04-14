@@ -11,10 +11,11 @@ interface ICollapseProps {
     headerClassName?: string;
     key?: string | number;
     earlyExit?: boolean
+    defaultOpen?:boolean
 }
 
 function Collapse(props: ICollapseProps) {
-  const [showChildren, setShowChildren] = useState<boolean>(false)
+  const [showChildren, setShowChildren] = useState<boolean>(props.defaultOpen ?? false)
 
   const chevRef = useRef<HTMLSpanElement>(null)
 
@@ -36,7 +37,7 @@ function Collapse(props: ICollapseProps) {
 }
 
 export const CollapseItem = (props: ICollapseProps) => {
-    return <motion.div key={props.key} className={`children-item ${props.className || ''}`} variants={collapseChildrenItem}>
+    return <motion.div key={props.key} className={`${props.className || ''} children-item`} variants={collapseChildrenItem}>
         {props.children}
     </motion.div>
 }

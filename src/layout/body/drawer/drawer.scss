@@ -1,4 +1,7 @@
 .drawer {
+    flex-basis: 80px;
+    flex-grow: 0;
+    flex-shrink: 0;
     width: 80px;
     background-color: var(--dark-shade-5);
     color: var(--dark-bg-text-color);
@@ -70,6 +73,7 @@
         }
     }
     section {
+        overflow: auto;
         ol {
             li {
                 .selection {
@@ -96,5 +100,8 @@
 }
 
 .drawer.drawer-open {
-    width: 300px;
+    width: 300px;    
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
