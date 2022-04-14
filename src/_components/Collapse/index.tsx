@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import React, { useRef, useState } from 'react'
 import { VscChevronRight } from 'react-icons/vsc';
 import {collapseChildren, collapseChildrenItem} from './animation'
@@ -23,8 +23,8 @@ function Collapse(props: ICollapseProps) {
   }
 
   return (
-    <div className={`${props.className ?? ''} custom-collapse`}>
-      <div className={`${props.headerClassName ?? ''} collapse-header`} onMouseDown={onHeaderMouseDown} role="button" tabIndex={0}>
+    <div className={`${props.className || ''} custom-collapse`}>
+      <div className={`${props.headerClassName || ''} collapse-header`} onMouseDown={onHeaderMouseDown} role="button" tabIndex={0}>
         <div className='collapse-chevron'><span ref={chevRef} className={`${showChildren && 'rotate-90' || ''}`}><VscChevronRight /></span></div>
         <div className={`collapse-title ${showChildren && 'active' || ''}`}>{props.title}</div>
       </div>
@@ -36,7 +36,7 @@ function Collapse(props: ICollapseProps) {
 }
 
 export const CollapseItem = (props: ICollapseProps) => {
-    return <motion.div key={props.key} className={`children-item ${props.className}`} variants={collapseChildrenItem}>
+    return <motion.div key={props.key} className={`children-item ${props.className || ''}`} variants={collapseChildrenItem}>
         {props.children}
     </motion.div>
 }

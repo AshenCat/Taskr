@@ -51,7 +51,7 @@ function Autocomplete(props: IAutocompleteProps) {
 
   return (
     <>
-        <Input {...props} className={`${props.className} custom-autocomplete`}>Autocomplete</Input>
+        <Input {...props} className={`${props.className || ''} custom-autocomplete`}>Autocomplete</Input>
         {showSuggestions && input && <SuggestionsListComponent />}
     </>
   )

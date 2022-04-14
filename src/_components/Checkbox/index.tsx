@@ -6,7 +6,7 @@ interface ICheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 function Checkbox(props: ICheckboxProps) {
   return (
-    <input {...props} className={`${props.className} custom-checkbox`} type='checkbox' />
+    <input {...props} className={`${props.className || ''} custom-checkbox`} type='checkbox' />
   )
 }
 
