@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useRef, useState } from 'react'
+import React, { Ref, useRef, useState } from 'react'
 import { VscChevronRight } from 'react-icons/vsc';
 import {collapseChildren, collapseChildrenItem} from './animation'
 import './collapse.scss'
@@ -10,8 +10,9 @@ interface ICollapseProps {
     title?: string;
     headerClassName?: string;
     key?: string | number;
-    earlyExit?: boolean
-    defaultOpen?:boolean
+    earlyExit?: boolean;
+    defaultOpen?: boolean;
+    ref?: Ref<any>;
 }
 
 function Collapse(props: ICollapseProps) {
@@ -37,7 +38,7 @@ function Collapse(props: ICollapseProps) {
 }
 
 export const CollapseItem = (props: ICollapseProps) => {
-    return <motion.div key={props.key} className={`${props.className || ''} children-item`} variants={collapseChildrenItem}>
+    return <motion.div ref={props.ref} key={props.key} className={`${props.className || ''} children-item`} variants={collapseChildrenItem}>
         {props.children}
     </motion.div>
 }

@@ -48,35 +48,31 @@
     --palette2-6: #693695;
     --palette2-7: #713695;
 
+    --danger: #ef5350;
     --danger-light: #ff4444;
     --danger-dark: #cc0000;
-    --danger-text: #d0d0d0;
+    --danger-text: white;
     
     --warning-light: #ffbb33;
     --warning-dark: #ff8800;
-    --warning-text: #d0d0d0;
+    --warning-text: #ededed;
     
     --success-light: #00c851;
     --success-dark: #007e33;
-    --success-text: #d0d0d0;
+    --success-text: #ededed;
     
     --info-light: #33b5e5;
     --info-dark: #0099cc;
-    --info-text: #d0d0d0;
+    --info-text: #ededed;
 }
 
 
-* {
-    font-family: 'Monaco', 'Menlo', 'Consolas', 'Droid Sans Mono', 'Inconsolata', 'Courier New', Courier, monospace;
-}
+* {font-family: 'Monaco', 'Menlo', 'Consolas', 'Droid Sans Mono', 'Inconsolata', 'Courier New', Courier, monospace;}
 
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
+*, *::before, *::after {box-sizing: border-box;}
 
 html, body, .root { 
-    height: 100%;
+    // height: 100%;
     background-color: var(--main-bg-color);
     margin: 0;
     padding: 0;
@@ -97,6 +93,6 @@ html, body, .root {
 }
 
 .input-group, .row {display: flex;}
-.form-group {display: flex;flex-flow: column;}
+.form-group, .column {display: flex; flex-flow: column;}
 .flex-1{flex:1}
 .m-2{margin:10px;}

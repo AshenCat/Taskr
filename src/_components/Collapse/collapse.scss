@@ -1,5 +1,5 @@
 .custom-collapse {
-    transition: .3s;
+    // transition: .3s;
     .collapse-header {
         display: flex;
         cursor: pointer;
@@ -23,9 +23,9 @@
         }
     }
     .collapse-children {
-        padding: 0 16px;
+        // padding: 0 16px;
         .children-item {
-            margin: 5px 0;
+            // margin: 5px 0;
         }
     }
 }
