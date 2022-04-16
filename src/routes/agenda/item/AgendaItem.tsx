@@ -3,7 +3,7 @@ import Checkbox from '../../../_components/Checkbox';
 import Chip from '../../../_components/Chip';
 import { CollapseItem } from '../../../_components/Collapse';
 import Select, {Option} from '../../../_components/Select';
-import {EventInfo, motion, PanInfo, useAnimation} from 'framer-motion'
+import { motion, PanInfo, useAnimation} from 'framer-motion'
 import './agendaItem.scss';
 
 interface IAgendaItemProps {
@@ -22,7 +22,7 @@ function AgendaItem({todo, optionState, checkboxState, tags}: IAgendaItemProps) 
   const [selectValue, setSelectValue] = useState(optionState);
   const controls = useAnimation();
 
-  const onDragEnd = (_: any, info: PanInfo) => {
+  const onDragEnd = (_: never, info: PanInfo) => {
     const shouldDrawerClose = info.velocity.x > 20 || (info.velocity.x >=0 && info.point.x > 45)
     if (shouldDrawerClose) {
       // console.log('close')

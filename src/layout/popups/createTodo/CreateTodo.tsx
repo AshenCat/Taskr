@@ -2,7 +2,9 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import Button from '../../../_components/Button';
 import Chip from '../../../_components/Chip';
 import Input from '../../../_components/Input';
+import {motion, PanInfo, useAnimation} from 'framer-motion';
 import './createTodo.scss'
+import useStore from '../../../state';
 
 interface ITags {
   id?: string,
@@ -17,9 +19,26 @@ function CreateTodo() {
   const [tagVariant, setTagVariant] = useState<string>('info');
   const [tags, setTags] = useState<ITags[]>([]);
 
+  const controls = useAnimation();
+
+  const {todoCreateOpen, todoCreateSetOpen} = useStore(state=>state) 
+
   useEffect(()=>{
-    
-  }, [])
+    if (todoCreateOpen) {
+      controls.start("open")
+    } else {
+      controls.start("close")
+    }
+  }, [todoCreateOpen, controls])
+
+  const onDragEnd = (_: never, info: PanInfo) => {
+    const shouldTodoClose = info.velocity.y > 20 || (info.velocity.y >=0 && info.point.y > 45)
+    if (shouldTodoClose) {
+      todoCreateSetOpen(false)
+    } else {
+      todoCreateSetOpen(true)
+    }
+  }
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -27,26 +46,48 @@ function CreateTodo() {
   }
 
   const onAddTag = () => {
-    setTags([...tags, {name: tagName, variant: tagVariant}]);
-    setTagVariant('info');
-    setTagName('')
+    if (tags.length < 2) {
+      setTags([...tags, {name: tagName, variant: tagVariant}]);
+      setTagVariant('info');
+      setTagName('')
+    }
   }
 
   return (
-    <section className='create-todo'>
+    <motion.section 
+    key="create-todo"
+      className='create-todo'
+      initial="close"
+      animate={controls}
+      variants={{
+        open: {y: 100},
+        close: {y: 345}
+      }}
+      drag="y"
+      dragTransition={{ bounceStiffness: 8000, bounceDamping: 400}}
+      dragConstraints={{ bottom: 345, top: 100 }}
+      dragElastic={0.5}
+      transition={{
+        type: "spring",
+        damping: 80,
+        stiffness: 2400
+      }}
+      onDragEnd={onDragEnd}
+      >
+      <h3>Create task</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor='todo'>Task: </label>
-          <Input show={true} name="todo" type="text" value={task} onChange={e=>setTask(e.target.value)} />
+          <Input name="todo" type="text" value={task} onChange={e=>setTask(e.target.value)} />
         </div>
         <div className="form-group">
           <label htmlFor='set'>Set: </label>
-          <Input show={true} name="set" type="text"  value={set} onChange={e=>setSet(e.target.value)} />
+          <Input name="set" type="text"  value={set} onChange={e=>setSet(e.target.value)} />
         </div>
         <div className="form-group">
           <label htmlFor='tags'>Tags: </label>
           <div className='input-group'>
-            <Input show={true} name="tags" type="text" className='create-todo-variant-name' value={tagName} onChange={e=>setTagName(e.target.value)} />
+            <Input name="tags" type="text" className='create-todo-variant-name' value={tagName} onChange={e=>setTagName(e.target.value)} />
             <select 
               className='create-todo-variant-dropdown'
               value={tagVariant}
@@ -64,7 +105,8 @@ function CreateTodo() {
         </div>
         <Button className='create-todo-submit'>Create</Button>
       </form>
-    </section>
+      <div className='blank-extension'></div>
+    </motion.section>
   )
 }
 
