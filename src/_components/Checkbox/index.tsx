@@ -1,7 +1,7 @@
 import React from 'react'
-
+import './checkbox.scss'
 interface ICheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    key?: string
+  _id?: string;
 }
 
 function Checkbox(props: ICheckboxProps) {

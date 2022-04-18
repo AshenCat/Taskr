@@ -21,7 +21,7 @@ function CreateTodo() {
 
   const controls = useAnimation();
 
-  const {todoCreateOpen, todoCreateSetOpen} = useStore(state=>state) 
+  const {todoCreateOpen} = useStore(state=>state)
 
   useEffect(()=>{
     if (todoCreateOpen) {
@@ -29,14 +29,14 @@ function CreateTodo() {
     } else {
       controls.start("close")
     }
-  }, [todoCreateOpen, controls])
+  }, [todoCreateOpen])
 
   const onDragEnd = (_: never, info: PanInfo) => {
-    const shouldTodoClose = info.velocity.y > 20 || (info.velocity.y >=0 && info.point.y > 45)
+    const shouldTodoClose = info.velocity.y > 20 || (info.velocity.y >=0 && info.point.y > 25)
     if (shouldTodoClose) {
-      todoCreateSetOpen(false)
+      controls.start("close")
     } else {
-      todoCreateSetOpen(true)
+      controls.start("open")
     }
   }
 
@@ -61,11 +61,11 @@ function CreateTodo() {
       animate={controls}
       variants={{
         open: {y: 100},
-        close: {y: 345}
+        close: {y: 385}
       }}
       drag="y"
       dragTransition={{ bounceStiffness: 8000, bounceDamping: 400}}
-      dragConstraints={{ bottom: 345, top: 100 }}
+      dragConstraints={{ bottom: 385, top: 100 }}
       dragElastic={0.5}
       transition={{
         type: "spring",

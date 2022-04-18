@@ -7,9 +7,11 @@ import { motion, PanInfo, useAnimation} from 'framer-motion'
 import './agendaItem.scss';
 
 interface IAgendaItemProps {
+  _id: string;
   todo: string;
   optionState: string;
   checkboxState: boolean;
+  due?: Date | string;
   tags?: {
     _id: string | number,
     name: string;
@@ -17,7 +19,7 @@ interface IAgendaItemProps {
   }[];
 }
 
-function AgendaItem({todo, optionState, checkboxState, tags}: IAgendaItemProps) {
+function AgendaItem({todo, optionState, checkboxState, tags, _id, due}: IAgendaItemProps) {
   const [isChecked, setIsChecked] = useState(checkboxState);
   const [selectValue, setSelectValue] = useState(optionState);
   const controls = useAnimation();
@@ -31,6 +33,18 @@ function AgendaItem({todo, optionState, checkboxState, tags}: IAgendaItemProps) 
       // console.log('open')
       controls.start("open")
     }
+  }
+
+  const onCheckboxClick = () => {
+    setIsChecked(prev=>!prev)
+  }
+
+  const onArchive = () => {
+    console.log('Archived ', _id)
+  }
+
+  const onTodoClick = () => {
+    console.log('click')
   }
 
   return (
@@ -51,22 +65,41 @@ function AgendaItem({todo, optionState, checkboxState, tags}: IAgendaItemProps) 
           close: { x: 0 },
           open: { x: -110 }
         }}
-        className="column agenda-details">
+        className={`column agenda-details ${selectValue.toLowerCase().replace(/\s/g, '-') ?? ''}`}>
         <div className='row'>
-          <Checkbox checked={isChecked} onChange={()=>setIsChecked(prev=>!prev)} />
-          <div className='todo-name'>{todo}</div>
+          <Checkbox defaultChecked={isChecked} onChange={onCheckboxClick} _id={_id} />
+          <div 
+            className={`${isChecked ? 'strike-through' : ''} todo-name`}        
+            onClick={onTodoClick}
+            tabIndex={0}
+            role="button">{todo}</div>
           <Select value={selectValue} onChange={e=>setSelectValue(e.target.value)}>
-            <Option value={1}>On going</Option>
-            <Option value={1}>On hold</Option>
-            <Option value={1}>Done</Option>
+            <Option value={'On going'}>On going</Option>
+            <Option value={'On hold'}>On hold</Option>
+            <Option value={'Past due'}>Past due</Option>
           </Select>
         </div>
-        <div className='row'>
+        <div 
+          className="row todo-date"        
+          onClick={onTodoClick}
+          tabIndex={0}
+          role="button">
+          Due date: <span>&nbsp;
+            {due ? due.toLocaleString('en-GB', {
+              day: '2-digit', month: 'short', year: 'numeric', hour: 'numeric', hour12: true, minute: '2-digit'
+            }) : 'N/A'}
+          </span>
+        </div>
+        <div 
+          className='row w-100 todo-tag'        
+          onClick={onTodoClick}
+          tabIndex={0}
+          role="button">
           {tags.map(t=><Chip key={t._id} name={t.name} variant={t.variant} />)}
         </div>
       </motion.div>
       <div className="column agenda-archive">
-        <div className='right-side-drawer'><h3>Archive</h3></div>
+        <div className='right-side-drawer' role="button" tabIndex={0} onClick={onArchive}><h3>Archive</h3></div>
         {/* <div className='right-side-drawer'><h3>Delete</h3></div> */}
       </div>
     </CollapseItem>
