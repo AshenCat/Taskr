@@ -1,0 +1,26 @@
+.custom-toast {
+    position: absolute;
+    width: calc(100% - 17px);
+    background-color: var(--warning-light);
+    z-index: 2;
+    color: white; 
+    .icon {
+        flex-basis: 50px;
+        font-size: 48px;
+    }
+    .text {
+    }
+}
+
+.custom-toast.warning {
+    background-color: var(--warning-light);
+    color: white; 
+}
+.custom-toast.danger {
+    background-color: var(--danger-light);
+    color: white; 
+}
+.custom-toast.success {
+    background-color: var(--success-light);
+    color: white; 
+}

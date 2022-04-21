@@ -5,6 +5,7 @@
     display: flex;
     color: var(--dark-bg-text-color);
     background-color: var(--dark-shade-5);
+    z-index: 5;
     .app-name {
         margin: 0;
         font-size: 24px;

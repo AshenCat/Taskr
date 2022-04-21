@@ -7,6 +7,7 @@ import Agenda from '../../routes/agenda/Agenda'
 import useStore from '../../state'
 import './body.scss'
 import Drawer from './drawer/Drawer'
+import Toast from '../popups/toast/Toast'
 
 interface IOverlay {
   show: boolean,
@@ -24,6 +25,7 @@ function Body() {
     <main className='main'>
         <Drawer />
         <div className='content'>
+            <Toast />
             <Overlay show={drawerOpen} setDrawerOpen={setDrawerOpen} />
             <section key={'section'} className={`body-container ${drawerOpen? 'blur' : ''}`}>
               <AnimatePresence exitBeforeEnter> 
