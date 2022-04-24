@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Checkbox from '../../../_components/Checkbox';
 import Chip from '../../../_components/Chip';
-import { CollapseItem } from '../../../_components/Collapse';
 import Select, {Option} from '../../../_components/Select';
 import { motion, PanInfo, useAnimation} from 'framer-motion'
 import './agendaItem.scss';
+import { todoConstants } from '../../../../constants';
 
 export interface IAgendaItemProps {
   _id: string;
@@ -41,6 +41,7 @@ function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
 
   const onArchive = () => {
     console.log('Archived ', _id)
+    window.electron.todoApi(todoConstants.ARCHIVE_TODO, _id);
   }
 
   const onTodoClick = () => {

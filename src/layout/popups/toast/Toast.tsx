@@ -21,26 +21,29 @@ function Toast() {
 
     useEffect(() => {
         window.electron.receive(errorConstants.TODO_ERROR, (data: INotificationData) => {
-            setTimeout(()=> {
-                setToastOpen(false)
-                setToastVariant(data.variant);
-                setToastMessage(data.message);
-                setToastOpen(true);
-            }, 1000)
+            setToastOpen(false)
+            setToastVariant(data.variant);
+            setToastMessage(data.message);
+            setToastOpen(true);
         })
         window.electron.receive(todoConstants.CREATE_TODO, (data: INotificationData) => {
-            console.log(data.message)
-            setTimeout(()=> {
-                setToastOpen(false)
-                setToastVariant(data.variant);
-                setToastMessage(data.message);
-                setToastOpen(true);
-                window.electron.todoApi(todoConstants.GET_USER_PENDING_TODO, null);
-            }, 1000)
+            setToastOpen(false)
+            setToastVariant(data.variant);
+            setToastMessage(data.message);
+            setToastOpen(true);
+            window.electron.todoApi(todoConstants.GET_USER_PENDING_TODO, null);
+        })
+        window.electron.receive(todoConstants.ARCHIVE_TODO, (data: INotificationData) => {
+            setToastOpen(false)
+            setToastVariant(data.variant);
+            setToastMessage(data.message);
+            setToastOpen(true);
+            window.electron.todoApi(todoConstants.GET_USER_PENDING_TODO, null);
         })
         return () => {
             window.electron.removeAllListeners(errorConstants.TODO_ERROR)
             window.electron.removeAllListeners(todoConstants.CREATE_TODO)
+            window.electron.removeAllListeners(todoConstants.ARCHIVE_TODO)
         }
     }, [])
 

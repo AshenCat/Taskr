@@ -56,11 +56,13 @@ exports.createTodo = async (e, data) => {
 exports.archiveTodo = async (e, id) => {
     let metaData;
     try {
-        await Todos.findOneAndUpdate({_id: ObjectId(id)}, {status: 'Archived'});
+        const todo = await Todos.findOne({_id: ObjectId(id)});
+        todo.status = 'Archived';
+        todo.save();
         metaData = createTodoMetaData({
             type: todoConstants.ARCHIVE_TODO,
             variant: 'INFO',
-            message: 'Successfully archived!',
+            message: 'Successfully archived todo!',
             metaData: todo
         })
         notificationController.createNotification(e, metaData);

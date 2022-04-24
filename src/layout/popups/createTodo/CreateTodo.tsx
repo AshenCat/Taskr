@@ -25,7 +25,7 @@ function CreateTodo() {
 
   const controls = useAnimation();
 
-  const {todoCreateOpen, setToastOpen, setToastMessage, setToastVariant} = useStore(state=>state)
+  const {todoCreateOpen, setToastOpen, setToastMessage, setToastVariant, todoCreateSetOpen} = useStore(state=>state)
 
   useEffect(()=>{
     if (todoCreateOpen) {
@@ -75,7 +75,7 @@ function CreateTodo() {
       ...dueDate && {due: dueDate},
       ...tags && {tags: tags}
     })
-    
+    todoCreateSetOpen(false)
     onReset();
   }
 
