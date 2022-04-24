@@ -73,7 +73,7 @@ function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
             className={`${isChecked ? 'strike-through' : ''} todo-name`}        
             onClick={onTodoClick}
             tabIndex={0}
-            role="button">{name}</div>
+            role="button"><span>{name}</span></div>
           <Select value={selectValue} onChange={e=>setSelectValue(e.target.value)}>
             <Option value={'On going'}>On going</Option>
             <Option value={'On hold'}>On hold</Option>

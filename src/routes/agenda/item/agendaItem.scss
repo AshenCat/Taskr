@@ -9,6 +9,7 @@
         flex-basis: 100%;
         background-color: var(--main-bg-color);
         z-index: 1;
+        width: 100%;
         &.on-hold {
             background-color: var(--warning-light);
             color: white; 
@@ -23,6 +24,14 @@
             align-items: center;
             font-size: 20px;
             margin-left: 8px;
+            height: 26px;
+            flex: 1;
+            span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 180px;
+            }
         }
         .todo-date {
             height: 22px;
