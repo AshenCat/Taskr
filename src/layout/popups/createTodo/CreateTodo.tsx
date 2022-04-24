@@ -39,8 +39,10 @@ function CreateTodo() {
     const shouldTodoClose = info.velocity.y > 20 || (info.velocity.y >=0 && info.point.y > 25)
     if (shouldTodoClose) {
       controls.start("close")
+      todoCreateSetOpen(false)
     } else {
       controls.start("open")
+      todoCreateSetOpen(true)
     }
   }
 

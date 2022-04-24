@@ -16,10 +16,29 @@
 
 .body-container {
     height: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     user-select: none;
     // padding-bottom: 30px;
+    &::-webkit-scrollbar {
+      width: 17px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: var(--light-tint-3);
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: var(--dark-shade-8);
+      border-radius: 15px;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 }
 
 

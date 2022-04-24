@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { todoConstants } from '../../../constants';
+import CreateTodo from '../../layout/popups/createTodo/CreateTodo';
 import useStore from '../../state';
 import './agenda.scss'
 import AgendaItem, { IAgendaItemProps } from './item/AgendaItem';
@@ -34,7 +35,7 @@ function Todo() {
         <div className='pb-35'>
           {todoList.map(d=><AgendaItem due={d.due} _id={"" + d._id} key={d._id} name={d.name} status={d.status} done={d.done} tags={d.tags} />)}
         </div>
-
+      <CreateTodo />
     </div>
   )
 }

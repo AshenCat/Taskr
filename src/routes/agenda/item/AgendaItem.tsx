@@ -80,14 +80,14 @@ function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
         }}
         className={`column agenda-details ${selectValue.toLowerCase().replace(/\s/g, '-') ?? ''}`}>
         <div className='row'>
-          <Checkbox defaultChecked={isChecked} onChange={onCheckboxClick} _id={_id} />
+          <Checkbox className='todo-check' defaultChecked={isChecked} onChange={onCheckboxClick} _id={_id} />
           <div 
             className={`${isChecked ? 'strike-through' : ''} todo-name`}        
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
             tabIndex={0}
             role="button"><span>{name}</span></div>
-          <Select value={selectValue} onChange={onSelectChange}>
+          <Select className='todo-select' value={selectValue} onChange={onSelectChange}>
             <Option value={'Pending'}>Pending</Option>
             <Option value={'On hold'}>On hold</Option>
             <Option value={'Past due'}>Past due</Option>

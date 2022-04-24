@@ -1,8 +1,6 @@
 import { AnimatePresence } from 'framer-motion'
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Set from '../../routes/set/Set'
-import CreateTodo from '../popups/createTodo/CreateTodo'
 import Agenda from '../../routes/agenda/Agenda'
 import useStore from '../../state'
 import './body.scss'
@@ -11,7 +9,7 @@ import Toast from '../popups/toast/Toast'
 
 interface IOverlay {
   show: boolean,
-  setDrawerOpen: (bool: boolean)=>void
+  setDrawerOpen: (_bool: boolean)=>void
 }
 
 function Overlay ({show, setDrawerOpen}: IOverlay) {
@@ -37,7 +35,6 @@ function Body() {
                 </Routes>
               </AnimatePresence>
             </section>
-            <CreateTodo />
         </div>
     </main>
   )
