@@ -70,7 +70,7 @@ function Toast() {
                     y: 0
                 },
                 hide: {
-                    y: -120
+                    y: -150
                 }
             }}
             initial="hide"
@@ -84,8 +84,8 @@ function Toast() {
                         {toastVariant === 'INFO' && <VscInfo />}
                         {toastVariant === 'SUCCESS' && <VscCheck />}
                     </div>
-                    <div className="text">
-                        {toastMessage}
+                    <div className="text center">
+                        <span>{toastMessage}</span>
                     </div>
                 </div> 
                 <div>

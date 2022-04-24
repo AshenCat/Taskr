@@ -9,6 +9,16 @@
         font-size: 48px;
     }
     .text {
+        height: 72px;
+        margin-left: 14px;
+        span {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 100%;
+        }
     }
 }
 
