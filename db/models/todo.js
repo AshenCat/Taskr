@@ -8,7 +8,7 @@ const todoSchema = new mongoose.Schema({
     done: Boolean,
     status: {
         type: String,
-        enum: ['Pending', 'On hold', 'Past Due', 'Archived'],
+        enum: ['Pending', 'On hold', 'Past due', 'Archived'],
         default: 'Pending',
     },
     tags: [{name: String, variant: String}],

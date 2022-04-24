@@ -13,11 +13,18 @@ function Todo() {
   useEffect(()=>{
     window.electron.todoApi(todoConstants.GET_USER_PENDING_TODO, {});
     window.electron.receive(todoConstants.GET_USER_PENDING_TODO, (list: IAgendaItemProps[]) =>{
-      console.log(list)
       setTodoList(list)
+    })
+    window.electron.receive(todoConstants.TOGGLE_DONE_TODO, () => {
+      window.electron.todoApi(todoConstants.GET_USER_PENDING_TODO, {})
+    })
+    window.electron.receive(todoConstants.UPDATE_STATUS_TODO, () => {
+      window.electron.todoApi(todoConstants.GET_USER_PENDING_TODO, {})
     })
     return () => {
       window.electron.removeAllListeners(todoConstants.GET_USER_PENDING_TODO)
+      window.electron.removeAllListeners(todoConstants.TOGGLE_DONE_TODO)
+      window.electron.removeAllListeners(todoConstants.UPDATE_STATUS_TODO)
     }
   }, [])
 

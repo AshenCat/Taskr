@@ -50,6 +50,8 @@ const {todoConstants} = require('./constants')
 ipcMain.on(todoConstants.CREATE_TODO, todoController.createTodo);
 ipcMain.on(todoConstants.ARCHIVE_TODO, todoController.archiveTodo);
 ipcMain.on(todoConstants.GET_USER_PENDING_TODO, todoController.getUserPendingTodos);
+ipcMain.on(todoConstants.TOGGLE_DONE_TODO, todoController.toggleTodoDoneById);
+ipcMain.on(todoConstants.UPDATE_STATUS_TODO, todoController.updateStatusTodo);
 // new Notification({title: 'Notification', body: message}).show()
 
 app.whenReady().then(createWindow)

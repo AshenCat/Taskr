@@ -1,5 +1,6 @@
 const { errorConstants } = require('../../constants');
 const Notification = require('../models/notification');
+const { serializeMongooseObject } = require('./helper');
 
 // const {ObjectId} = require('mongoose').Types;
 
@@ -22,8 +23,8 @@ exports.createNotification = async (e, notif) => {
     } catch(err) {
         console.error(err)
         e.sender.send(errorConstants.NOTIFICATION_ERROR, {
-            variant: danger,
-            message: 'Error creating todo',
+            variant: 'DANGER',
+            message: 'Error somewhere in notification',
             metaData: notif
         })
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Checkbox from '../../../_components/Checkbox';
 import Chip from '../../../_components/Chip';
 import Select, {Option} from '../../../_components/Select';
@@ -23,6 +23,7 @@ function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
   const [isChecked, setIsChecked] = useState(done);
   const [selectValue, setSelectValue] = useState(status);
   const controls = useAnimation();
+  const timeRef = useRef<number>(0)
 
   const onDragEnd = (_: never, info: PanInfo) => {
     const shouldDrawerClose = info.velocity.x > 20 || (info.velocity.x >=0 && info.point.x > 45)
@@ -36,16 +37,27 @@ function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
   }
 
   const onCheckboxClick = () => {
-    setIsChecked(prev=>!prev)
+    setIsChecked(prev=>!prev);
+    window.electron.todoApi(todoConstants.TOGGLE_DONE_TODO, _id);
   }
 
   const onArchive = () => {
-    console.log('Archived ', _id)
     window.electron.todoApi(todoConstants.ARCHIVE_TODO, _id);
   }
 
-  const onTodoClick = () => {
-    console.log('click')
+  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectValue(e.target.value);
+    window.electron.todoApi(todoConstants.UPDATE_STATUS_TODO, {id: _id, status: e.target.value})
+  }
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    timeRef.current = Date.now();
+  }
+  const onMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log(Date.now() - timeRef.current);
+    if (Date.now() - timeRef.current < 400) {
+      console.log('click')
+    }
   }
 
   return (
@@ -71,18 +83,20 @@ function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
           <Checkbox defaultChecked={isChecked} onChange={onCheckboxClick} _id={_id} />
           <div 
             className={`${isChecked ? 'strike-through' : ''} todo-name`}        
-            onClick={onTodoClick}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
             tabIndex={0}
             role="button"><span>{name}</span></div>
-          <Select value={selectValue} onChange={e=>setSelectValue(e.target.value)}>
-            <Option value={'On going'}>On going</Option>
+          <Select value={selectValue} onChange={onSelectChange}>
+            <Option value={'Pending'}>Pending</Option>
             <Option value={'On hold'}>On hold</Option>
             <Option value={'Past due'}>Past due</Option>
           </Select>
         </div>
         <div 
           className="row todo-date"        
-          onClick={onTodoClick}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
           tabIndex={0}
           role="button">
           Due date: <span>&nbsp;
@@ -93,7 +107,8 @@ function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
         </div>
         <div 
           className='row w-100 todo-tag'        
-          onClick={onTodoClick}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
           tabIndex={0}
           role="button">
           {tags.map(t=><Chip key={t._id} name={t.name} variant={t.variant} />)}

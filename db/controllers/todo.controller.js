@@ -58,13 +58,38 @@ exports.archiveTodo = async (e, id) => {
     try {
         const todo = await Todos.findOne({_id: ObjectId(id)});
         todo.status = 'Archived';
-        todo.save();
+        await todo.save();
         metaData = createTodoMetaData({
             type: todoConstants.ARCHIVE_TODO,
             variant: 'INFO',
             message: 'Successfully archived todo!',
             metaData: todo
         })
+        notificationController.createNotification(e, metaData);
+    } catch(err) {
+        console.error(err)
+        let errorMetaData = createTodoErrorMetaData({
+            type: errorConstants.TODO_ERROR,
+            message: 'Error archiving todo',
+            metaData: {err, metaData}
+        })
+        notificationController.createNotification(e, errorMetaData);
+    }
+}
+
+exports.updateStatusTodo = async (e, data) => {
+    const {id, status} = data;
+    let metaData;
+    try {
+        const todo = await Todos.findOne({_id: ObjectId(id)});
+        todo.status = status;
+        await todo.save();
+        metaData = createTodoMetaData({
+            type: todoConstants.UPDATE_STATUS_TODO,
+            variant: 'INFO',
+            message: 'Successfully updating todo status!',
+            metaData: todo
+        });
         notificationController.createNotification(e, metaData);
     } catch(err) {
         console.error(err)
@@ -84,7 +109,7 @@ exports.toggleTodoDoneById = async (e, id) => {
         todo.done = !todo.done;
         await todo.save();
         metaData = createTodoMetaData({
-            type: todoConstants.ARCHIVE_TODO,
+            type: todoConstants.TOGGLE_DONE_TODO,
             variant: 'INFO',
             silent: true,
             message: `Toggled todo to ${todo.done}`,
