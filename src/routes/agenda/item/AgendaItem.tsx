@@ -6,11 +6,11 @@ import Select, {Option} from '../../../_components/Select';
 import { motion, PanInfo, useAnimation} from 'framer-motion'
 import './agendaItem.scss';
 
-interface IAgendaItemProps {
+export interface IAgendaItemProps {
   _id: string;
-  todo: string;
-  optionState: string;
-  checkboxState: boolean;
+  name: string;
+  status: string;
+  done: boolean;
   due?: Date | string;
   tags?: {
     _id: string | number,
@@ -19,9 +19,9 @@ interface IAgendaItemProps {
   }[];
 }
 
-function AgendaItem({todo, optionState, checkboxState, tags, _id, due}: IAgendaItemProps) {
-  const [isChecked, setIsChecked] = useState(checkboxState);
-  const [selectValue, setSelectValue] = useState(optionState);
+function AgendaItem({name, status, done, tags, _id, due}: IAgendaItemProps) {
+  const [isChecked, setIsChecked] = useState(done);
+  const [selectValue, setSelectValue] = useState(status);
   const controls = useAnimation();
 
   const onDragEnd = (_: never, info: PanInfo) => {
@@ -48,7 +48,7 @@ function AgendaItem({todo, optionState, checkboxState, tags, _id, due}: IAgendaI
   }
 
   return (
-    <CollapseItem className='agenda-row'>
+    <div className='agenda-row'>
       <motion.div 
         drag="x" 
         dragConstraints={{ right: 0, left: -110 }}
@@ -72,7 +72,7 @@ function AgendaItem({todo, optionState, checkboxState, tags, _id, due}: IAgendaI
             className={`${isChecked ? 'strike-through' : ''} todo-name`}        
             onClick={onTodoClick}
             tabIndex={0}
-            role="button">{todo}</div>
+            role="button">{name}</div>
           <Select value={selectValue} onChange={e=>setSelectValue(e.target.value)}>
             <Option value={'On going'}>On going</Option>
             <Option value={'On hold'}>On hold</Option>
@@ -102,7 +102,7 @@ function AgendaItem({todo, optionState, checkboxState, tags, _id, due}: IAgendaI
         <div className='right-side-drawer' role="button" tabIndex={0} onClick={onArchive}><h3>Archive</h3></div>
         {/* <div className='right-side-drawer'><h3>Delete</h3></div> */}
       </div>
-    </CollapseItem>
+    </div>
   )
 }
 

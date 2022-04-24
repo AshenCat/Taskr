@@ -5,20 +5,28 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 17px;
     background-color: var(--light-tint-9);
     border-radius: 10% 10% 0 0;
     padding: 18px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     h3 {
         text-align: center;
-        margin: 0 0 10px 0;
+        margin: 0 0 0 0;
         user-select: none;
+    }
+    .reset-button {
+        position:absolute;
+        padding: 6px;
+        font-size: 20px;
+        border-radius: 50%;
+        right: 0;
     }
     form {
         height: 100%;
         display: flex;
         flex-flow: column;
+        margin-top: 8px;
         .form-group {
             .input-group {
                 .create-todo-variant-name {
@@ -31,11 +39,11 @@
                     
                 }
                 .create-todo-add-tag {
-                    border-top-right-radius: 2px;
-                    border-top-left-radius: 0;
-                    border-bottom-right-radius: 2px;
-                    border-bottom-left-radius: 0;
                     padding: 6px 12px;
+                }
+                .create-todo-due-date, .create-todo-due-time {
+                    padding: 5px 7.5px;
+                    height: 30px;
                 }
             }
         }

@@ -1,0 +1,4 @@
+module.exports = {
+    TODO_ERROR: 'TODO_ERROR',
+    NOTIFICATION_ERROR: 'NOTIFICATION_ERROR'
+}

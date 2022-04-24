@@ -1,7 +1,7 @@
 .custom-toast {
     position: absolute;
     width: calc(100% - 17px);
-    background-color: var(--warning-light);
+    background-color: var(--palette1-1);
     z-index: 2;
     color: white; 
     .icon {
@@ -12,15 +12,15 @@
     }
 }
 
-.custom-toast.warning {
+.custom-toast.WARNING {
     background-color: var(--warning-light);
     color: white; 
 }
-.custom-toast.danger {
+.custom-toast.DANGER {
     background-color: var(--danger-light);
     color: white; 
 }
-.custom-toast.success {
+.custom-toast.SUCCESS {
     background-color: var(--success-light);
     color: white; 
 }

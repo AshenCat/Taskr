@@ -1,20 +1,32 @@
 import { StoreSlice } from '../interface'
 
+interface INotificationData {
+    category: string;
+    type: string;
+    silent: boolean;
+    variant: string;
+    message: string;
+    metaData: any;
+}
 export interface IToastState {
+    dataArray: INotificationData[];
+    setDataArray: (_d: INotificationData[]) => void;
     toastOpen: boolean;
-    setToastOpen: (s: boolean) => void;
+    setToastOpen: (_s: boolean) => void;
     toastMessage: string | null;
-    setToastMessage: (s: string) => void;
+    setToastMessage: (_s: string) => void;
     toastVariant: string | null;
-    setToastVariant: (s: string) => void;
+    setToastVariant: (_s: string) => void;
 }
 
 
 const createToastSlice: StoreSlice<IToastState> = set => ({
+    dataArray: [],
+    setDataArray: (data) => set(state=>({...state, dataArray: data})),
     toastOpen: false,
     setToastOpen: (newState) => set(state=>({...state, toastOpen: newState})),
     toastMessage: '',
-    setToastMessage: (selected) => set(state=>({...state, toastSelected: selected})),
+    setToastMessage: (message) => set(state=>({...state, toastMessage: message})),
     toastVariant: '',
     setToastVariant: (variant) => set(state=>({...state, toastVariant: variant}))
 })

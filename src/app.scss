@@ -93,8 +93,14 @@ html, body, .root {
 }
 
 .line-through, .strike-through {text-decoration: line-through;}
-.input-group, .row {display: flex;}
+.input-group, .row, .d-flex {display: flex;}
 .form-group, .column {display: flex; flex-flow: column;}
 .flex-1{flex:1}
 .m-2{margin:10px;}
+.p-2{padding:10px;}
+.pb-35{padding-bottom: 35px;}
 .w-100, .w100 {width: 100%;}
+.h-100, .h100 {height: 100%;}
+.center {display:flex; justify-content: center; align-items: center; align-content: center;}
+.bgless, .backgroundless {background-color: #00000000 !important;}
+.relative {position:relative}

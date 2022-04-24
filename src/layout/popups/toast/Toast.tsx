@@ -2,19 +2,56 @@ import React, { useEffect } from 'react';
 import useStore from '../../../state';
 import {motion, useAnimation} from 'framer-motion';
 import './toast.scss';
-import { VscWarning } from 'react-icons/vsc';
+import { VscCheck, VscInfo, VscWarning } from 'react-icons/vsc';
 import Button from '../../../_components/Button';
+import { errorConstants, todoConstants } from '../../../../constants';
+
+interface INotificationData {
+    category: string;
+    type: string;
+    silent: boolean;
+    variant: string;
+    message: string;
+    metaData: any;
+}
 
 function Toast() {
-    const {toastOpen, setToastOpen, toastMessage, toastVariant} = useStore(state=>state)
+    const {toastOpen, setToastOpen, setToastMessage, setToastVariant, toastMessage, toastVariant} = useStore(state=>state)
     const controls = useAnimation();
 
     useEffect(() => {
+        window.electron.receive(errorConstants.TODO_ERROR, (data: INotificationData) => {
+            setTimeout(()=> {
+                setToastOpen(false)
+                setToastVariant(data.variant);
+                setToastMessage(data.message);
+                setToastOpen(true);
+            }, 1000)
+        })
+        window.electron.receive(todoConstants.CREATE_TODO, (data: INotificationData) => {
+            console.log(data.message)
+            setTimeout(()=> {
+                setToastOpen(false)
+                setToastVariant(data.variant);
+                setToastMessage(data.message);
+                setToastOpen(true);
+                window.electron.todoApi(todoConstants.GET_USER_PENDING_TODO, null);
+            }, 1000)
+        })
+        return () => {
+            window.electron.removeAllListeners(errorConstants.TODO_ERROR)
+            window.electron.removeAllListeners(todoConstants.CREATE_TODO)
+        }
+    }, [])
+
+    useEffect(() => {
         if (toastOpen) {
+            // console.log('show')
             setTimeout(()=>setToastOpen(false), 5000);
             controls.start('show')
         }
         else if (!toastOpen) {
+            // console.log('hide')
             controls.start('hide')
         }
     }, [toastOpen])
@@ -39,7 +76,10 @@ function Toast() {
             className={`custom-toast ${toastVariant ?? ''}`}>
                 <div className="d-flex h-100 center p-2">
                     <div className="icon center">
-                        <VscWarning />
+                        {toastVariant === 'WARNING' && <VscWarning />}
+                        {toastVariant === 'DANGER' && <VscWarning />}
+                        {toastVariant === 'INFO' && <VscInfo />}
+                        {toastVariant === 'SUCCESS' && <VscCheck />}
                     </div>
                     <div className="text">
                         {toastMessage}
