@@ -15,7 +15,6 @@ function drawer() {
   const onDrawerItemClick = (section: string) => {
     setDrawerOpen(true);
     setDrawerSelected(section)
-    console.log(drawerSelected)
   }
 
   const onSelectionClick = (route: string) => {
@@ -25,6 +24,8 @@ function drawer() {
 
   const RenderSelectionItems: FunctionComponent = () => {
     switch(drawerSelected) {
+      case 'Settings':
+        return <></>
       case 'Agenda':
         return <AgendaItems />
       case 'Alarm':
@@ -45,7 +46,7 @@ function drawer() {
             rotate: 0,
             scale: 1.2,
           }}
-          onClick={()=>setDrawerOpen(true)}
+          onClick={()=>onDrawerItemClick('Settings')}
           className="settings" 
           role='button' 
           tabIndex={0}>
@@ -54,16 +55,16 @@ function drawer() {
         <header><div onClick={()=>onSelectionClick('/')} role='button' tabIndex={0}>Apps</div></header>
         <motion.ol>
           <li className={`${drawerSelected === 'Agenda' ? 'mark' : ''}`}>
-            <motion.div whileTap={{scale:1.15}} onClick={()=>navigate('Agenda')} className="drawer-item" role='button' tabIndex={0}>A</motion.div>
+            <motion.div whileTap={{scale:1.15}} onClick={()=>onDrawerItemClick('Agenda')} className="drawer-item" role='button' tabIndex={0}>A</motion.div>
             <span>Agenda</span>
           </li>
           <li className={`${drawerSelected === 'Alarm' ? 'mark' : ''}`}>
-            <motion.div whileTap={{scale:1.15}} onClick={()=>navigate('Alarm')} className="drawer-item" role='button' tabIndex={0}>A</motion.div>
+            <motion.div whileTap={{scale:1.15}} onClick={()=>onDrawerItemClick('Alarm')} className="drawer-item" role='button' tabIndex={0}>A</motion.div>
             <span>Alarm</span>
           </li>
         </motion.ol>
       </aside>
-      <section>
+      <section className='selections'>
         <RenderSelectionItems />
       </section>
     </nav>

@@ -29,6 +29,7 @@ function createWindow() {
         frame: false,
         webPreferences: {
             nodeIntegration: false,
+            devTools: true,
             worldSafeExecuteJavaScript: true,
             contextIsolation: true,
             preload: path.join(__dirname, 'preload.js')
@@ -52,6 +53,8 @@ ipcMain.on(todoConstants.ARCHIVE_TODO, todoController.archiveTodo);
 ipcMain.on(todoConstants.GET_USER_PENDING_TODO, todoController.getUserPendingTodos);
 ipcMain.on(todoConstants.TOGGLE_DONE_TODO, todoController.toggleTodoDoneById);
 ipcMain.on(todoConstants.UPDATE_STATUS_TODO, todoController.updateStatusTodo);
+ipcMain.on(todoConstants.GET_ALL_SET_NAME_TODO, todoController.getAllSetNameTodo);
+ipcMain.on(todoConstants.GET_USER_ARCHIVED_TODO, todoController.getUserArchivedTodo);
 // new Notification({title: 'Notification', body: message}).show()
 
 app.whenReady().then(createWindow)

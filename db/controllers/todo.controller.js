@@ -153,3 +153,37 @@ exports.getUserPendingTodos = async (e, _userId) => {
         })
     }
 }
+
+exports.getAllSetNameTodo = async (e) => {
+    try {
+        const sets = await Todos.aggregate([
+            {
+                $match: {}
+            }, {
+                $group: {
+                    _id: "$set",
+                    count: {$sum: 1}
+                }
+            }]
+        );
+        e.sender.send(todoConstants.GET_ALL_SET_NAME_TODO, sets.map(set=>(serializeMongooseObject(set))))
+    } catch(err) {
+        e.sender.send(errorConstants.TODO_ERROR, {
+            variant: danger,
+            message: 'Error fetching todo set'
+        })
+    }
+}
+
+exports.getUserArchivedTodo = async (e) => {
+    try {
+        const archivedTodos = await Todos.find({status: {$eq: 'Archived'}}).lean();
+        e.sender.send(todoConstants.GET_USER_ARCHIVED_TODO, archivedTodos.map(todo=>(serializeMongooseObject(todo))))
+    } catch(err) {
+        console.error(err)
+        e.sender.send(errorConstants.TODO_ERROR, {
+            variant: danger,
+            message: 'Error feetching todos'
+        })
+    }
+}

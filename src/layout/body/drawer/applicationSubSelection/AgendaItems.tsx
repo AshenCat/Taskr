@@ -17,40 +17,42 @@ function Todo() {
     setDrawerOpen(false);
   }
 
-
-  return (<ol>
-    <li>
-      <div className='selection' onClick={()=>onSelectionClick('/set')} 
-        role="button" 
-        tabIndex={0}>
-          List all sets
-      </div>
-    </li>
-    <li>
-      <div className='selection' onClick={()=>onSelectionClick('/set?create=true')} 
-        role="button" 
-        tabIndex={0}>
-          Create a set
-      </div>
-    </li>
-    <li>
-      <div className='selection' onClick={()=>onSelectionClick('/todo')} 
-        role="button" 
-        tabIndex={0}>
-          List all todos
-      </div>
-    </li>
-    <li>
-      <div className='selection' onClick={()=>{
-        todoCreateSetOpen(true)
-        setDrawerOpen(false)
-      }} 
-        role="button" 
-        tabIndex={0}>
-          Create a todo
-      </div>
-    </li>
-  </ol>)
+  return (<>
+    <header>SETS</header>
+    <ol className='selection-list-items'>
+      <li className='selection-list-item'>
+        <div className='selection' onClick={()=>onSelectionClick('/agenda?list=set')} 
+          role="button" 
+          tabIndex={0}>
+            List all todo sets
+        </div>
+      </li>
+    </ol>
+    <header>Todos</header>
+    <ol className='selection-list-items'>
+      <li className='selection-list-item'>
+        <div className='selection' onClick={()=>onSelectionClick('/agenda')} 
+          role="button" 
+          tabIndex={0}>
+            Pending todos
+        </div>
+      </li>
+      <li className='selection-list-item'>
+        <div className='selection' onClick={()=>onSelectionClick('/agenda?filter=finished')} 
+          role="button" 
+          tabIndex={0}>
+            Finished todos
+        </div>
+      </li>
+      <li className='selection-list-item'>
+        <div className='selection' onClick={()=>onSelectionClick('/agenda?filter=archived')} 
+          role="button" 
+          tabIndex={0}>
+            Archived todos
+        </div>
+      </li>
+    </ol>
+  </>)
 }
 
 export default Todo

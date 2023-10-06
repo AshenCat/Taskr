@@ -2,9 +2,9 @@ import { StoreSlice } from '../interface'
 
 export interface IDrawerState {
     drawerOpen: boolean;
-    setDrawerOpen: (s: boolean) => void;
+    setDrawerOpen: (_s: boolean) => void;
     drawerSelected: string | null;
-    setDrawerSelected: (s: string) => void;
+    setDrawerSelected: (_s: string) => void;
 }
 
 
